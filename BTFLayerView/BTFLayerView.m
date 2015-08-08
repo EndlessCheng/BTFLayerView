@@ -8,7 +8,8 @@
 
 const int HORIZONTAL_LINE_NUMBER = 6;
 const int VERTICAL_LINE_NUMBER = 6;
-const float LINE_WIDTH = 1.0f;
+const float AXES_LINE_WIDTH = 1.0f;
+const float MIN_MAX_LINE_WIDTH = 2.0f;
 
 const int Y_SCALE_RIGHT_MARGIN = 22;
 
@@ -37,19 +38,34 @@ const int Y_SCALE_RIGHT_MARGIN = 22;
         [self drawXYLines];
         [self drawScales];
         [self drawArea];
+
+        CGPoint normalMinPoint = CGPointMake(_model.minPoint.x, _model.minPoint.y / _model.maxPoint.y);
+        CGPoint normalMaxPoint = CGPointMake(_model.maxPoint.x, 1.0f);
+        UIColor *softBlue = [UIColor colorWithRed:3.0f / 255 green:169.0f / 255 blue:252.0f / 255 alpha:1.0f];
+        UIColor *softRed = [UIColor colorWithRed:241.0f / 255 green:90.0f / 255 blue:36.0f / 255 alpha:1.0f];
+        UIColor *softLightBlue = [UIColor colorWithRed:3.0f / 255 green:169.0f / 255 blue:252.0f / 255 alpha:0.5f];
+        UIColor *softLightRed = [UIColor colorWithRed:241.0f / 255 green:90.0f / 255 blue:36.0f / 255 alpha:0.5f];
+        [self drawMinMaxLineWithPoint:normalMinPoint pointColor:softBlue lineColor:softLightBlue];
+        [self drawMinMaxLineWithPoint:normalMaxPoint pointColor:softRed lineColor:softLightRed];
     }
 }
 
-- (void)prepareForDraw {
+- (CGPoint)changePointToLayerPoint:(CGPoint)point {
+    float x = _originPoint.x + point.x * _chartWidth;
+    float y = _originPoint.y - point.y * _chartHeight;
+    CGPoint layerPoint = (CGPoint) {x, y};
+    return layerPoint;
 }
 
-- (CAShapeLayer *)getShapeLayerWithColor:(UIColor *)color {
+- (CAShapeLayer *)getShapeLayerWithLineWidth:(float)lineWidth color:(UIColor *)color {
     CAShapeLayer *shapeLayer = [CAShapeLayer new];
-    shapeLayer.fillColor = [UIColor clearColor].CGColor;
-    shapeLayer.lineWidth = LINE_WIDTH;
     shapeLayer.lineCap = kCALineCapRound;
+    shapeLayer.lineWidth = lineWidth;
     shapeLayer.strokeColor = color.CGColor;
     return shapeLayer;
+}
+
+- (void)prepareForDraw {
 }
 
 - (void)drawXYLines {
@@ -57,7 +73,7 @@ const int Y_SCALE_RIGHT_MARGIN = 22;
     UIColor *lightGrayColor = [UIColor colorWithRed:153.0f / 255 green:153.0f / 255 blue:153.0f / 255 alpha:0.3f];
 
     // 画X轴
-    CAShapeLayer *shapeLayerX = [self getShapeLayerWithColor:grayColor];
+    CAShapeLayer *shapeLayerX = [self getShapeLayerWithLineWidth:AXES_LINE_WIDTH color:grayColor];
     [self.layer addSublayer:shapeLayerX];
     UIBezierPath *pathX = [UIBezierPath bezierPath];
     [pathX moveToPoint:CGPointMake(_originPoint.x, _originPoint.y)];
@@ -65,7 +81,7 @@ const int Y_SCALE_RIGHT_MARGIN = 22;
     shapeLayerX.path = pathX.CGPath;
 
     // 画横线
-    CAShapeLayer *shapeLayer = [self getShapeLayerWithColor:lightGrayColor];
+    CAShapeLayer *shapeLayer = [self getShapeLayerWithLineWidth:AXES_LINE_WIDTH color:lightGrayColor];
     [self.layer addSublayer:shapeLayer];
     UIBezierPath *path = [UIBezierPath bezierPath];
     float yGap = _chartHeight / (HORIZONTAL_LINE_NUMBER - 1);
@@ -77,7 +93,7 @@ const int Y_SCALE_RIGHT_MARGIN = 22;
     shapeLayer.path = path.CGPath;
 
     // 画竖线
-    CAShapeLayer *shapeLayerY = [self getShapeLayerWithColor:lightGrayColor];
+    CAShapeLayer *shapeLayerY = [self getShapeLayerWithLineWidth:AXES_LINE_WIDTH color:lightGrayColor];
     [shapeLayerY setLineDashPattern:@[@3, @2]]; // 虚线: 长度, 间距
     [self.layer addSublayer:shapeLayerY];
     UIBezierPath *pathY = [UIBezierPath bezierPath];
@@ -106,7 +122,7 @@ const int Y_SCALE_RIGHT_MARGIN = 22;
     }
 
     // 画y轴上的刻度(包括最低点)
-    float yGap = _model.maxY / (HORIZONTAL_LINE_NUMBER - 1);
+    float yGap = _model.maxPoint.y / (HORIZONTAL_LINE_NUMBER - 1);
     for (int i = 0; i < HORIZONTAL_LINE_NUMBER; i++) {
         NSString *yScaleString = [NSString stringWithFormat:@"%d", (int) (yGap * i)];
         float posY = _originPoint.y - 5 - i * _chartHeight / (HORIZONTAL_LINE_NUMBER - 1);
@@ -122,30 +138,23 @@ const int Y_SCALE_RIGHT_MARGIN = 22;
                     frame:(CGRect)frame
           backgroundColor:(UIColor *)backgroundColor {
     CATextLayer *xTextLayer = [CATextLayer layer];
+
+    CFStringRef fontName = (__bridge CFStringRef) font.fontName;
+    CGFontRef fontRef = CGFontCreateWithFontName(fontName);
+    xTextLayer.font = fontRef;
+    CGFontRelease(fontRef);
+
     xTextLayer.frame = frame;
-    [self.layer addSublayer:xTextLayer];
+    xTextLayer.fontSize = font.pointSize;
     xTextLayer.foregroundColor = color.CGColor;
     xTextLayer.backgroundColor = backgroundColor.CGColor;
     xTextLayer.alignmentMode = kCAAlignmentCenter;
     xTextLayer.wrapped = YES;
-
-    //set layer font
-    CFStringRef fontName = (__bridge CFStringRef) font.fontName;
-    CGFontRef fontRef = CGFontCreateWithFontName(fontName);
-    xTextLayer.font = fontRef;
-    xTextLayer.fontSize = font.pointSize;
-    CGFontRelease(fontRef);
-
     xTextLayer.string = string;
     xTextLayer.contentsScale = [UIScreen mainScreen].scale;
     xTextLayer.cornerRadius = 3.0f;
-}
 
-- (CGPoint)changePointToLayerPoint:(CGPoint)point {
-    float x = _originPoint.x + point.x * _chartWidth;
-    float y = _originPoint.y - point.y * _chartHeight;
-    CGPoint layerPoint = (CGPoint) {x, y};
-    return layerPoint;
+    [self.layer addSublayer:xTextLayer];
 }
 
 - (void)drawArea {
@@ -169,7 +178,6 @@ const int Y_SCALE_RIGHT_MARGIN = 22;
     UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
 
     CAShapeLayer *slayer = [CAShapeLayer layer];
-//    slayer.fillColor = [UIColor blackColor].CGColor;
     slayer.frame = CGRectMake(0, 0, img.size.width, img.size.height);
     slayer.contents = (id) img.CGImage;
     [self.layer addSublayer:slayer];
@@ -183,26 +191,52 @@ const int Y_SCALE_RIGHT_MARGIN = 22;
                 startColor:(CGColorRef)startColor
                   endColor:(CGColorRef)endColor {
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    CGFloat locations[] = {0.0, 1.0};
-
-    NSArray *colors = @[(__bridge id) startColor, (__bridge id) endColor];
-
-    CGGradientRef gradient = CGGradientCreateWithColors(colorSpace, (__bridge CFArrayRef) colors, locations);
-
-    CGRect pathRect = CGPathGetBoundingBox(path);
-
-    // 具体方向可根据需求修改
-    CGPoint startPoint = CGPointMake(CGRectGetMidX(pathRect), CGRectGetMinY(pathRect));
-    CGPoint endPoint = CGPointMake(CGRectGetMidX(pathRect), CGRectGetMaxY(pathRect));
-
     CGContextSaveGState(context);
     CGContextAddPath(context, path);
     CGContextClip(context);
-    CGContextDrawLinearGradient(context, gradient, startPoint, endPoint, 0); // *
-    CGContextRestoreGState(context);
 
+    NSArray *colors = @[(__bridge id) startColor, (__bridge id) endColor];
+    CGFloat locations[] = {0.0f, 1.0f};
+    CGGradientRef gradient = CGGradientCreateWithColors(colorSpace, (__bridge CFArrayRef) colors, locations);
+    CGRect pathRect = CGPathGetBoundingBox(path);
+    CGPoint startPoint = CGPointMake(CGRectGetMidX(pathRect), CGRectGetMinY(pathRect));
+    CGPoint endPoint = CGPointMake(CGRectGetMidX(pathRect), CGRectGetMaxY(pathRect));
+    CGContextDrawLinearGradient(context, gradient, startPoint, endPoint, 0); // *
+
+    CGContextRestoreGState(context);
     CGGradientRelease(gradient);
     CGColorSpaceRelease(colorSpace);
+}
+
+- (void)drawMinMaxLineWithPoint:(CGPoint)point pointColor:(UIColor *)pointColor lineColor:(UIColor *)lineColor {
+    CGPoint layerPoint = [self changePointToLayerPoint:point];
+
+    CAShapeLayer *pointShapeLayer = [CAShapeLayer new];
+    pointShapeLayer.lineCap = kCALineCapRound;
+    pointShapeLayer.lineWidth = 1.0f;
+    pointShapeLayer.fillColor = pointColor.CGColor;
+    [self.layer addSublayer:pointShapeLayer];
+
+    UIBezierPath *pointPath = [UIBezierPath bezierPath];
+    [pointPath addArcWithCenter:layerPoint radius:2.0f startAngle:0.0f endAngle:180.0f clockwise:YES];
+    pointShapeLayer.path = pointPath.CGPath; // 关联layer和贝塞尔路径
+
+    CAShapeLayer *lineShapeLayer = [self getShapeLayerWithLineWidth:MIN_MAX_LINE_WIDTH color:lineColor];
+    [self.layer addSublayer:lineShapeLayer];
+
+    UIBezierPath *linePath = [UIBezierPath bezierPath];
+    [linePath moveToPoint:layerPoint];
+    [linePath addLineToPoint:[self changePointToLayerPoint:(CGPoint) {point.x, 0.0f}]];
+    lineShapeLayer.path = linePath.CGPath;
+
+    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"opacity"];
+    animation.fromValue = @(0.0);
+    animation.toValue = @(0.0);
+    animation.duration = 0.0f;
+    [pointShapeLayer addAnimation:animation forKey:nil];
+    pointShapeLayer.strokeEnd = 1;
+    [lineShapeLayer addAnimation:animation forKey:nil];
+    lineShapeLayer.strokeEnd = 1;
 }
 
 @end

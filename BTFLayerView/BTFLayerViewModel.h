@@ -11,7 +11,8 @@
 @property NSMutableArray *points;
 @property int runSeconds;
 
-@property float maxY;
+@property CGPoint minPoint;
+@property CGPoint maxPoint;
 
 - (id)initWithArray:(NSArray *)yArray
          runSeconds:(int)runSeconds;
