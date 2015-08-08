@@ -45,8 +45,8 @@ const int Y_SCALE_RIGHT_MARGIN = 22;
         UIColor *softRed = [UIColor colorWithRed:241.0f / 255 green:90.0f / 255 blue:36.0f / 255 alpha:1.0f];
         UIColor *softLightBlue = [UIColor colorWithRed:3.0f / 255 green:169.0f / 255 blue:252.0f / 255 alpha:0.5f];
         UIColor *softLightRed = [UIColor colorWithRed:241.0f / 255 green:90.0f / 255 blue:36.0f / 255 alpha:0.5f];
-        [self drawMinMaxLineWithPoint:normalMinPoint pointColor:softBlue lineColor:softLightBlue];
-        [self drawMinMaxLineWithPoint:normalMaxPoint pointColor:softRed lineColor:softLightRed];
+        [self drawMinMaxLineWithPoint:normalMinPoint value:_model.minPoint.y pointColor:softBlue lineColor:softLightBlue];
+        [self drawMinMaxLineWithPoint:normalMaxPoint value:_model.minPoint.y pointColor:softRed lineColor:softLightRed];
     }
 }
 
@@ -208,7 +208,8 @@ const int Y_SCALE_RIGHT_MARGIN = 22;
     CGColorSpaceRelease(colorSpace);
 }
 
-- (void)drawMinMaxLineWithPoint:(CGPoint)point pointColor:(UIColor *)pointColor lineColor:(UIColor *)lineColor {
+- (void)drawMinMaxLineWithPoint:(CGPoint)point value:(float)value pointColor:(UIColor *)pointColor lineColor:(UIColor *)lineColor {
+    // 画点
     CGPoint layerPoint = [self changePointToLayerPoint:point];
 
     CAShapeLayer *pointShapeLayer = [CAShapeLayer new];
@@ -221,6 +222,7 @@ const int Y_SCALE_RIGHT_MARGIN = 22;
     [pointPath addArcWithCenter:layerPoint radius:2.0f startAngle:0.0f endAngle:180.0f clockwise:YES];
     pointShapeLayer.path = pointPath.CGPath; // 关联layer和贝塞尔路径
 
+    // 画线
     CAShapeLayer *lineShapeLayer = [self getShapeLayerWithLineWidth:MIN_MAX_LINE_WIDTH color:lineColor];
     [self.layer addSublayer:lineShapeLayer];
 
@@ -237,6 +239,25 @@ const int Y_SCALE_RIGHT_MARGIN = 22;
     pointShapeLayer.strokeEnd = 1;
     [lineShapeLayer addAnimation:animation forKey:nil];
     lineShapeLayer.strokeEnd = 1;
+
+    // 画文字
+    float deltaX;
+    if (point.x == 0.0f) {
+        deltaX = 0.0f;
+    }
+    else if (point.x == 1.0f) {
+        deltaX = 20.0f;
+    }
+    else {
+        deltaX = 10.0f;
+    }
+    NSString *valueString = [NSString stringWithFormat:@"%d", (int) value];
+    float textWidth = valueString.length * 7.0f;
+    float textHeight = 13.0f;
+    CGRect minFrame = CGRectMake(layerPoint.x - deltaX, layerPoint.y - 15, textWidth, textHeight);
+    UIColor *textColor = [UIColor whiteColor];
+    UIFont *font = [UIFont systemFontOfSize:13];
+    [self drawStringWithStr:valueString textColor:textColor font:font frame:minFrame backgroundColor:pointColor];
 }
 
 @end
