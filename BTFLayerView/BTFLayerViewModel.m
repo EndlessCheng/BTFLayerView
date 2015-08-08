@@ -5,7 +5,6 @@
 
 #import "BTFLayerViewModel.h"
 
-
 @implementation BTFLayerViewModel {
 
 }
@@ -21,16 +20,20 @@
         }
 
         _points = [[NSMutableArray alloc] init];
-        [_points addObject:[NSValue valueWithCGPoint:CGPointMake(0.0, 0.0)]];
-        for (unsigned int i = 0U; i < yArray.count; ++i) {
-            float x = ((float) (i + 1)) / yArray.count;
-            float y = [yArray[i] floatValue] / _maxY;
-            NSValue *point = [NSValue valueWithCGPoint:CGPointMake(x, y)];
-            if (![point isEqual:[NSNull null]]) {
-                [_points addObject:point];
+        if (yArray.count == 1) {
+            [_points addObject:[NSValue valueWithCGPoint:CGPointMake(0.0, 0.0)]];
+            [_points addObject:[NSValue valueWithCGPoint:CGPointMake(1.0, 1.0)]];
+        }
+        else {
+            for (unsigned int i = 0U; i < yArray.count; ++i) {
+                float x = ((float) i) / (yArray.count - 1);
+                float y = [yArray[i] floatValue] / _maxY;
+                NSValue *point = [NSValue valueWithCGPoint:CGPointMake(x, y)];
+                if (![point isEqual:[NSNull null]]) {
+                    [_points addObject:point];
+                }
             }
         }
-
         _runSeconds = runSeconds;
     }
 

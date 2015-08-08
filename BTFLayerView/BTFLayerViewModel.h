@@ -14,6 +14,6 @@
 @property float maxY;
 
 - (id)initWithArray:(NSArray *)yArray
-        runSeconds:(int)runSeconds;
+         runSeconds:(int)runSeconds;
 
 @end

@@ -7,12 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C43C033BA59AFE0174608D0 /* chart_speed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C43C537024AD7A1FDD84CEC /* chart_speed@2x.png */; };
 		2C43C255B7772A501C9DD226 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C43C3EB9AFB2468E2C82051 /* AppDelegate.m */; };
 		2C43C304CA5771536E1EBFE0 /* BTFLayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C43C24DFF4FE18AC6686DE8 /* BTFLayerView.m */; };
 		2C43C52E8AE5B13DFFABB916 /* BTFLayerViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C43C53A06E8FAC2AD6F0A69 /* BTFLayerViewTests.m */; };
 		2C43C5DDE5A390611E050901 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C43C41D00B812ABE5FBF665 /* LaunchScreen.xib */; };
 		2C43C64551DBE53653B24D06 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C43C2BFCF0C5A95598281DD /* Main.storyboard */; };
 		2C43C6835E0468D59D481D87 /* BTFLayerViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C43CE8B49DFA766E76EA270 /* BTFLayerViewModel.m */; };
+		2C43C98A28CC0A023DEA6B15 /* chart_speed@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C43C54F3E7DE21C92A306E5 /* chart_speed@3x.png */; };
 		2C43C9D262F1FF3494EAE3C9 /* BTFLayerView.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2C43CFABC8403DC924A94988 /* BTFLayerView.xcdatamodeld */; };
 		2C43CC87CF5090729D9A922F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C43C42AFE9A3EA24B0226CF /* main.m */; };
 		2C43CCE158AA6A175CB0631B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C43C3B260333294030175CC /* Images.xcassets */; };
@@ -38,7 +40,9 @@
 		2C43C3EB9AFB2468E2C82051 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		2C43C42AFE9A3EA24B0226CF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2C43C50D5B47C67F14E90C6F /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
+		2C43C537024AD7A1FDD84CEC /* chart_speed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chart_speed@2x.png"; sourceTree = "<group>"; };
 		2C43C53A06E8FAC2AD6F0A69 /* BTFLayerViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTFLayerViewTests.m; sourceTree = "<group>"; };
+		2C43C54F3E7DE21C92A306E5 /* chart_speed@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chart_speed@3x.png"; sourceTree = "<group>"; };
 		2C43C64E354E29A798E444A4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		2C43C736F0969726A2CEF6A8 /* BTFLayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTFLayerView.h; sourceTree = "<group>"; };
 		2C43C8D67A8F63BB14837EAB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
@@ -96,6 +100,15 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
+		2C43C9E077AE8551C951994A /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				2C43C537024AD7A1FDD84CEC /* chart_speed@2x.png */,
+				2C43C54F3E7DE21C92A306E5 /* chart_speed@3x.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
 		2C43CB5E1FFA9DC29D016F3B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -118,6 +131,7 @@
 				2C43C1C8CBFEDD5DED45C079 /* BTFLayerViewController.m */,
 				2C43C61816640FC4D37990B7 /* Views */,
 				2C43C38804D7AF0B8AB0E6BB /* Models */,
+				2C43C9E077AE8551C951994A /* Images */,
 			);
 			path = BTFLayerView;
 			sourceTree = "<group>";
@@ -229,6 +243,8 @@
 				2C43CCE158AA6A175CB0631B /* Images.xcassets in Resources */,
 				2C43C5DDE5A390611E050901 /* LaunchScreen.xib in Resources */,
 				2C43C64551DBE53653B24D06 /* Main.storyboard in Resources */,
+				2C43C033BA59AFE0174608D0 /* chart_speed@2x.png in Resources */,
+				2C43C98A28CC0A023DEA6B15 /* chart_speed@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
