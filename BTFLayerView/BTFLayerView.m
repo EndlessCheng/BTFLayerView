@@ -254,7 +254,6 @@ const int Y_SCALE_RIGHT_MARGIN = 22;
     else {
         deltaX = textWidth / 2;
     }
-    NSLog(@"textWidth: %f", textWidth);
     CGRect minFrame = CGRectMake(layerPoint.x - deltaX, layerPoint.y - 15, textWidth, textHeight);
     UIColor *textColor = [UIColor whiteColor];
     UIFont *font = [UIFont systemFontOfSize:13];

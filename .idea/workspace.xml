@@ -37,8 +37,8 @@
       <file leaf-file-name="BTFLayerView.m" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/BTFLayerView/BTFLayerView.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.53745925" vertical-offset="5511" max-vertical-offset="6432">
-              <caret line="210" column="76" selection-start-line="210" selection-start-column="76" selection-end-line="210" selection-end-column="76" />
+            <state vertical-scroll-proportion="0.55700326" vertical-offset="5487" max-vertical-offset="6408">
+              <caret line="251" column="23" selection-start-line="251" selection-start-column="23" selection-end-line="251" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -331,8 +331,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/BTFLayerView/BTFLayerView.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.53745925" vertical-offset="5511" max-vertical-offset="6432">
-          <caret line="210" column="76" selection-start-line="210" selection-start-column="76" selection-end-line="210" selection-end-column="76" />
+        <state vertical-scroll-proportion="0.55700326" vertical-offset="5487" max-vertical-offset="6408">
+          <caret line="251" column="23" selection-start-line="251" selection-start-column="23" selection-end-line="251" selection-end-column="23" />
           <folding />
         </state>
       </provider>
