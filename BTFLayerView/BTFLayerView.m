@@ -46,7 +46,7 @@ const int Y_SCALE_RIGHT_MARGIN = 22;
         UIColor *softLightBlue = [UIColor colorWithRed:3.0f / 255 green:169.0f / 255 blue:252.0f / 255 alpha:0.5f];
         UIColor *softLightRed = [UIColor colorWithRed:241.0f / 255 green:90.0f / 255 blue:36.0f / 255 alpha:0.5f];
         [self drawMinMaxLineWithPoint:normalMinPoint value:_model.minPoint.y pointColor:softBlue lineColor:softLightBlue];
-        [self drawMinMaxLineWithPoint:normalMaxPoint value:_model.minPoint.y pointColor:softRed lineColor:softLightRed];
+        [self drawMinMaxLineWithPoint:normalMaxPoint value:_model.maxPoint.y pointColor:softRed lineColor:softLightRed];
     }
 }
 
@@ -241,19 +241,20 @@ const int Y_SCALE_RIGHT_MARGIN = 22;
     lineShapeLayer.strokeEnd = 1;
 
     // 画文字
+    NSString *valueString = [NSString stringWithFormat:@"%d", (int) value];
+    float textWidth = valueString.length * 7.0f;
+    float textHeight = 13.0f;
     float deltaX;
     if (point.x == 0.0f) {
         deltaX = 0.0f;
     }
     else if (point.x == 1.0f) {
-        deltaX = 20.0f;
+        deltaX = textWidth;
     }
     else {
-        deltaX = 10.0f;
+        deltaX = textWidth / 2;
     }
-    NSString *valueString = [NSString stringWithFormat:@"%d", (int) value];
-    float textWidth = valueString.length * 7.0f;
-    float textHeight = 13.0f;
+    NSLog(@"textWidth: %f", textWidth);
     CGRect minFrame = CGRectMake(layerPoint.x - deltaX, layerPoint.y - 15, textWidth, textHeight);
     UIColor *textColor = [UIColor whiteColor];
     UIFont *font = [UIFont systemFontOfSize:13];
