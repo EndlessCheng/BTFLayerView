@@ -11,7 +11,7 @@ const int VERTICAL_LINE_NUMBER = 6;
 const float AXES_LINE_WIDTH = 1.0f;
 const float MIN_MAX_LINE_WIDTH = 2.0f;
 
-const int Y_SCALE_RIGHT_MARGIN = 22;
+const int Y_SCALE_RIGHT_MARGIN = 22; // TODO: 应为最大值的文字长度（一半左右）
 
 @implementation BTFLayerView {
 
@@ -242,16 +242,14 @@ const int Y_SCALE_RIGHT_MARGIN = 22;
 
     // 画文字
     NSString *valueString = [NSString stringWithFormat:@"%d", (int) value];
-    float textWidth = valueString.length * 7.0f;
+    float textWidth = valueString.length * 8.0f;
     float textHeight = 13.0f;
     float deltaX;
     if (point.x == 0.0f) {
         deltaX = 0.0f;
-    }
-    else if (point.x == 1.0f) {
+    } else if (point.x == 1.0f) {
         deltaX = textWidth;
-    }
-    else {
+    } else {
         deltaX = textWidth / 2;
     }
     CGRect minFrame = CGRectMake(layerPoint.x - deltaX, layerPoint.y - 15, textWidth, textHeight);

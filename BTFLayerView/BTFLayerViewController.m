@@ -36,7 +36,8 @@
                                               alpha:0.3f];
     int layerCount = 0;
 
-    NSArray *array = @[@80.0f, @90.0f, @90.0f, @80.0f, @40.0f, @90.0f, @80.0f, @120.0f, @90.0f, @80.0f, @56.0f, @90.0f, @69.0f, @90.0f, @90.0f,];
+    NSArray *array = @[@80.0f, @90.0f, @90.0f, @23.0f, @26.0f, @34.0f, @67.0f, @80.0f, @120.0f, @90.0f, @80.0f, @56.0f,
+            @90.0f, @69.0f, @90.0f, @90.0f, @74.0f];
 
     BTFLayerView *layerView = [[BTFLayerView alloc] initWithFrame:CGRectMake(54, 15, SCREEN_WIDTH - 64, 139)];
     BTFLayerViewModel *layerViewModel = [[BTFLayerViewModel alloc] initWithArray:array
