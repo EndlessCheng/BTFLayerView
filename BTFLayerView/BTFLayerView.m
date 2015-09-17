@@ -114,7 +114,12 @@ const int Y_SCALE_RIGHT_MARGIN = 22; // TODO: 应为最大值的文字长度（�
     // 画x轴上的刻度
     float xGap = _model.runSeconds / (VERTICAL_LINE_NUMBER - 1);
     for (int i = 0; i < VERTICAL_LINE_NUMBER; i++) {
-        NSString *xScaleString = [NSString stringWithFormat:@"%d", (int) (xGap * i)];
+        NSString *xScaleString;
+        if (i == 0) {
+            xScaleString = @"0s";
+        } else {
+            xScaleString = [NSString stringWithFormat:@"%d", (int) (xGap * i)];
+        }
         float posX = _originPoint.x - 15 + i * _chartWidth / (VERTICAL_LINE_NUMBER - 1);
         [self drawStringWithStr:xScaleString textColor:xScaleColor font:font
                           frame:CGRectMake(posX, _originPoint.y, 30.0f, 11.0f)
