@@ -1,6 +1,6 @@
 //
 //  AppDelegate.h
-//  BTFLayerView
+//  BTFLineChartView
 //
 //  Created by chengyh on 15/8/7.
 //  Copyright (c) 2015 jianyan. All rights reserved.

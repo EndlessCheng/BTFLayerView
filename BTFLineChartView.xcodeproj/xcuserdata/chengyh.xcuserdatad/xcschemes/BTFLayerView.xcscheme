@@ -14,9 +14,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2C43C425E5B67C504BF8120A"
-               BuildableName = "BTFLayerView.app"
-               BlueprintName = "BTFLayerView"
-               ReferencedContainer = "container:BTFLayerView.xcodeproj">
+               BuildableName = "BTFLineChartView.app"
+               BlueprintName = "BTFLineChartView"
+               ReferencedContainer = "container:BTFLineChartView.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,9 +32,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2C43C4E3635F4A2DEC54124F"
-               BuildableName = "BTFLayerViewTests.xctest"
-               BlueprintName = "BTFLayerViewTests"
-               ReferencedContainer = "container:BTFLayerView.xcodeproj">
+               BuildableName = "BTFLineChartView.xctest"
+               BlueprintName = "BTFLineChartViewTests"
+               ReferencedContainer = "container:BTFLineChartView.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -42,9 +42,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2C43C425E5B67C504BF8120A"
-            BuildableName = "BTFLayerView.app"
-            BlueprintName = "BTFLayerView"
-            ReferencedContainer = "container:BTFLayerView.xcodeproj">
+            BuildableName = "BTFLineChartView.app"
+            BlueprintName = "BTFLineChartView"
+            ReferencedContainer = "container:BTFLineChartView.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -65,9 +65,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2C43C425E5B67C504BF8120A"
-            BuildableName = "BTFLayerView.app"
-            BlueprintName = "BTFLayerView"
-            ReferencedContainer = "container:BTFLayerView.xcodeproj">
+            BuildableName = "BTFLineChartView.app"
+            BlueprintName = "BTFLineChartView"
+            ReferencedContainer = "container:BTFLineChartView.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -83,9 +83,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2C43C425E5B67C504BF8120A"
-            BuildableName = "BTFLayerView.app"
-            BlueprintName = "BTFLayerView"
-            ReferencedContainer = "container:BTFLayerView.xcodeproj">
+            BuildableName = "BTFLineChartView.app"
+            BlueprintName = "BTFLineChartView"
+            ReferencedContainer = "container:BTFLineChartView.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

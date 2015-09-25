@@ -9,16 +9,16 @@
 /* Begin PBXBuildFile section */
 		2C43C033BA59AFE0174608D0 /* chart_speed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C43C537024AD7A1FDD84CEC /* chart_speed@2x.png */; };
 		2C43C255B7772A501C9DD226 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C43C3EB9AFB2468E2C82051 /* AppDelegate.m */; };
-		2C43C304CA5771536E1EBFE0 /* BTFLayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C43C24DFF4FE18AC6686DE8 /* BTFLayerView.m */; };
-		2C43C52E8AE5B13DFFABB916 /* BTFLayerViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C43C53A06E8FAC2AD6F0A69 /* BTFLayerViewTests.m */; };
+		2C43C304CA5771536E1EBFE0 /* BTFLineChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C43C24DFF4FE18AC6686DE8 /* BTFLineChartView.m */; };
 		2C43C5DDE5A390611E050901 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C43C41D00B812ABE5FBF665 /* LaunchScreen.xib */; };
 		2C43C64551DBE53653B24D06 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C43C2BFCF0C5A95598281DD /* Main.storyboard */; };
-		2C43C6835E0468D59D481D87 /* BTFLayerViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C43CE8B49DFA766E76EA270 /* BTFLayerViewModel.m */; };
+		2C43C6835E0468D59D481D87 /* BTFLineChartViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C43CE8B49DFA766E76EA270 /* BTFLineChartViewModel.m */; };
 		2C43C98A28CC0A023DEA6B15 /* chart_speed@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C43C54F3E7DE21C92A306E5 /* chart_speed@3x.png */; };
-		2C43C9D262F1FF3494EAE3C9 /* BTFLayerView.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2C43CFABC8403DC924A94988 /* BTFLayerView.xcdatamodeld */; };
+		2C43C9D262F1FF3494EAE3C9 /* BTFLineChartView.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2C43CFABC8403DC924A94988 /* BTFLineChartView.xcdatamodeld */; };
 		2C43CC87CF5090729D9A922F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C43C42AFE9A3EA24B0226CF /* main.m */; };
 		2C43CCE158AA6A175CB0631B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C43C3B260333294030175CC /* Images.xcassets */; };
-		2C43CFDBF68ACDFB06DAC1E9 /* BTFLayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C43C1C8CBFEDD5DED45C079 /* BTFLayerViewController.m */; };
+		2C43CFDBF68ACDFB06DAC1E9 /* BTFLineChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C43C1C8CBFEDD5DED45C079 /* BTFLineChartViewController.m */; };
+		E5CADC151BB3FA3C00BA85FF /* BTFLineChartScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = E5CADC141BB3FA3C00BA85FF /* BTFLineChartScrollView.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,26 +33,28 @@
 
 /* Begin PBXFileReference section */
 		2C43C1691F6D0D79994BD4DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		2C43C1C8CBFEDD5DED45C079 /* BTFLayerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTFLayerViewController.m; sourceTree = "<group>"; };
-		2C43C24DFF4FE18AC6686DE8 /* BTFLayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTFLayerView.m; sourceTree = "<group>"; };
-		2C43C373F354D4E0B5CC1211 /* BTFLayerViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTFLayerViewModel.h; sourceTree = "<group>"; };
+		2C43C1C8CBFEDD5DED45C079 /* BTFLineChartViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTFLineChartViewController.m; sourceTree = "<group>"; };
+		2C43C24DFF4FE18AC6686DE8 /* BTFLineChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTFLineChartView.m; sourceTree = "<group>"; };
+		2C43C373F354D4E0B5CC1211 /* BTFLineChartViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTFLineChartViewModel.h; sourceTree = "<group>"; };
 		2C43C3B260333294030175CC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		2C43C3EB9AFB2468E2C82051 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		2C43C42AFE9A3EA24B0226CF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2C43C50D5B47C67F14E90C6F /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
 		2C43C537024AD7A1FDD84CEC /* chart_speed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chart_speed@2x.png"; sourceTree = "<group>"; };
-		2C43C53A06E8FAC2AD6F0A69 /* BTFLayerViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTFLayerViewTests.m; sourceTree = "<group>"; };
 		2C43C54F3E7DE21C92A306E5 /* chart_speed@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chart_speed@3x.png"; sourceTree = "<group>"; };
 		2C43C64E354E29A798E444A4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		2C43C736F0969726A2CEF6A8 /* BTFLayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTFLayerView.h; sourceTree = "<group>"; };
-		2C43C8D67A8F63BB14837EAB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
-		2C43CA67D4C56C6B88A38A28 /* BTFLayerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTFLayerViewController.h; sourceTree = "<group>"; };
+		2C43C736F0969726A2CEF6A8 /* BTFLineChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTFLineChartView.h; sourceTree = "<group>"; };
+		2C43CA67D4C56C6B88A38A28 /* BTFLineChartViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTFLineChartViewController.h; sourceTree = "<group>"; };
 		2C43CAC2063BA85494052FE0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		2C43CB20A04EE70F02314526 /* BTFLayerView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BTFLayerView.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		2C43CD1A32F126AE0C86E2A6 /* BTFLayerViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BTFLayerViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		2C43CE8B49DFA766E76EA270 /* BTFLayerViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTFLayerViewModel.m; sourceTree = "<group>"; };
+		2C43CB20A04EE70F02314526 /* BTFLineChartView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BTFLineChartView.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C43CD1A32F126AE0C86E2A6 /* BTFLineChartView.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BTFLineChartView.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C43CE8B49DFA766E76EA270 /* BTFLineChartViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTFLineChartViewModel.m; sourceTree = "<group>"; };
 		2C43CF77EE3205DCB3D52E17 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
-		2C43CFEBBAADEFB3D2E77C77 /* BTFLayerView.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BTFLayerView.xcdatamodel; sourceTree = "<group>"; };
+		2C43CFEBBAADEFB3D2E77C77 /* BTFLineChartView.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BTFLineChartView.xcdatamodel; sourceTree = "<group>"; };
+		E5CADC0C1BB2B76100BA85FF /* BTFRange.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTFRange.h; sourceTree = "<group>"; };
+		E5CADC121BB3EE0D00BA85FF /* BTFLineChartTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTFLineChartTypes.h; sourceTree = "<group>"; };
+		E5CADC131BB3FA0900BA85FF /* BTFLineChartScrollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTFLineChartScrollView.h; sourceTree = "<group>"; };
+		E5CADC141BB3FA3C00BA85FF /* BTFLineChartScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTFLineChartScrollView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,26 +78,20 @@
 		2C43C38804D7AF0B8AB0E6BB /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				2C43CE8B49DFA766E76EA270 /* BTFLayerViewModel.m */,
-				2C43C373F354D4E0B5CC1211 /* BTFLayerViewModel.h */,
+				2C43C373F354D4E0B5CC1211 /* BTFLineChartViewModel.h */,
+				2C43CE8B49DFA766E76EA270 /* BTFLineChartViewModel.m */,
 			);
 			name = Models;
-			sourceTree = "<group>";
-		};
-		2C43C5489B328B441467A214 /* BTFLayerViewTests */ = {
-			isa = PBXGroup;
-			children = (
-				2C43CB5E1FFA9DC29D016F3B /* Supporting Files */,
-				2C43C53A06E8FAC2AD6F0A69 /* BTFLayerViewTests.m */,
-			);
-			path = BTFLayerViewTests;
 			sourceTree = "<group>";
 		};
 		2C43C61816640FC4D37990B7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				2C43C24DFF4FE18AC6686DE8 /* BTFLayerView.m */,
-				2C43C736F0969726A2CEF6A8 /* BTFLayerView.h */,
+				E5CADC121BB3EE0D00BA85FF /* BTFLineChartTypes.h */,
+				E5CADC131BB3FA0900BA85FF /* BTFLineChartScrollView.h */,
+				E5CADC141BB3FA3C00BA85FF /* BTFLineChartScrollView.m */,
+				2C43C736F0969726A2CEF6A8 /* BTFLineChartView.h */,
+				2C43C24DFF4FE18AC6686DE8 /* BTFLineChartView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -109,15 +105,7 @@
 			name = Images;
 			sourceTree = "<group>";
 		};
-		2C43CB5E1FFA9DC29D016F3B /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				2C43C8D67A8F63BB14837EAB /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		2C43CCC99745129DCC305BC6 /* BTFLayerView */ = {
+		2C43CCC99745129DCC305BC6 /* BTFLineChartView */ = {
 			isa = PBXGroup;
 			children = (
 				2C43CDF29D4C4DF9D69EACB2 /* Supporting Files */,
@@ -125,14 +113,16 @@
 				2C43C41D00B812ABE5FBF665 /* LaunchScreen.xib */,
 				2C43C64E354E29A798E444A4 /* AppDelegate.h */,
 				2C43C3EB9AFB2468E2C82051 /* AppDelegate.m */,
-				2C43CFABC8403DC924A94988 /* BTFLayerView.xcdatamodeld */,
+				2C43CFABC8403DC924A94988 /* BTFLineChartView.xcdatamodeld */,
 				2C43C2BFCF0C5A95598281DD /* Main.storyboard */,
-				2C43CA67D4C56C6B88A38A28 /* BTFLayerViewController.h */,
-				2C43C1C8CBFEDD5DED45C079 /* BTFLayerViewController.m */,
+				E5CADC0C1BB2B76100BA85FF /* BTFRange.h */,
+				2C43CA67D4C56C6B88A38A28 /* BTFLineChartViewController.h */,
+				2C43C1C8CBFEDD5DED45C079 /* BTFLineChartViewController.m */,
 				2C43C61816640FC4D37990B7 /* Views */,
 				2C43C38804D7AF0B8AB0E6BB /* Models */,
 				2C43C9E077AE8551C951994A /* Images */,
 			);
+			name = BTFLineChartView;
 			path = BTFLayerView;
 			sourceTree = "<group>";
 		};
@@ -150,16 +140,15 @@
 			isa = PBXGroup;
 			children = (
 				2C43CFB21C448E691ED9B8FD /* Products */,
-				2C43CCC99745129DCC305BC6 /* BTFLayerView */,
-				2C43C5489B328B441467A214 /* BTFLayerViewTests */,
+				2C43CCC99745129DCC305BC6 /* BTFLineChartView */,
 			);
 			sourceTree = "<group>";
 		};
 		2C43CFB21C448E691ED9B8FD /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2C43CB20A04EE70F02314526 /* BTFLayerView.app */,
-				2C43CD1A32F126AE0C86E2A6 /* BTFLayerViewTests.xctest */,
+				2C43CB20A04EE70F02314526 /* BTFLineChartView.app */,
+				2C43CD1A32F126AE0C86E2A6 /* BTFLineChartView.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -167,9 +156,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		2C43C425E5B67C504BF8120A /* BTFLayerView */ = {
+		2C43C425E5B67C504BF8120A /* BTFLineChartView */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2C43C072D35E799721CC0AA0 /* Build configuration list for PBXNativeTarget "BTFLayerView" */;
+			buildConfigurationList = 2C43C072D35E799721CC0AA0 /* Build configuration list for PBXNativeTarget "BTFLineChartView" */;
 			buildPhases = (
 				2C43C9AA1D0B6931D36371F3 /* Sources */,
 				2C43C24CB16B2D6DD69DE91A /* Frameworks */,
@@ -179,14 +168,14 @@
 			);
 			dependencies = (
 			);
-			name = BTFLayerView;
+			name = BTFLineChartView;
 			productName = BTFLayerView;
-			productReference = 2C43CB20A04EE70F02314526 /* BTFLayerView.app */;
+			productReference = 2C43CB20A04EE70F02314526 /* BTFLineChartView.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2C43C4E3635F4A2DEC54124F /* BTFLayerViewTests */ = {
+		2C43C4E3635F4A2DEC54124F /* BTFLineChartViewTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2C43C38256F8C7599D7E813F /* Build configuration list for PBXNativeTarget "BTFLayerViewTests" */;
+			buildConfigurationList = 2C43C38256F8C7599D7E813F /* Build configuration list for PBXNativeTarget "BTFLineChartViewTests" */;
 			buildPhases = (
 				2C43CB832C9C0AA6A03D6B94 /* Sources */,
 				2C43C1C45D18C47BEB038501 /* Frameworks */,
@@ -197,9 +186,9 @@
 			dependencies = (
 				2C43C041D8E3221B55E2B4C9 /* PBXTargetDependency */,
 			);
-			name = BTFLayerViewTests;
+			name = BTFLineChartViewTests;
 			productName = BTFLayerViewTests;
-			productReference = 2C43CD1A32F126AE0C86E2A6 /* BTFLayerViewTests.xctest */;
+			productReference = 2C43CD1A32F126AE0C86E2A6 /* BTFLineChartView.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -210,7 +199,7 @@
 			attributes = {
 				ORGANIZATIONNAME = jianyan;
 			};
-			buildConfigurationList = 2C43C478B0E11ABFB4D19630 /* Build configuration list for PBXProject "BTFLayerView" */;
+			buildConfigurationList = 2C43C478B0E11ABFB4D19630 /* Build configuration list for PBXProject "BTFLineChartView" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -222,8 +211,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				2C43C425E5B67C504BF8120A /* BTFLayerView */,
-				2C43C4E3635F4A2DEC54124F /* BTFLayerViewTests */,
+				2C43C425E5B67C504BF8120A /* BTFLineChartView */,
+				2C43C4E3635F4A2DEC54124F /* BTFLineChartViewTests */,
 			);
 		};
 /* End PBXProject section */
@@ -257,10 +246,11 @@
 			files = (
 				2C43CC87CF5090729D9A922F /* main.m in Sources */,
 				2C43C255B7772A501C9DD226 /* AppDelegate.m in Sources */,
-				2C43C9D262F1FF3494EAE3C9 /* BTFLayerView.xcdatamodeld in Sources */,
-				2C43CFDBF68ACDFB06DAC1E9 /* BTFLayerViewController.m in Sources */,
-				2C43C6835E0468D59D481D87 /* BTFLayerViewModel.m in Sources */,
-				2C43C304CA5771536E1EBFE0 /* BTFLayerView.m in Sources */,
+				E5CADC151BB3FA3C00BA85FF /* BTFLineChartScrollView.m in Sources */,
+				2C43C9D262F1FF3494EAE3C9 /* BTFLineChartView.xcdatamodeld in Sources */,
+				2C43CFDBF68ACDFB06DAC1E9 /* BTFLineChartViewController.m in Sources */,
+				2C43C6835E0468D59D481D87 /* BTFLineChartViewModel.m in Sources */,
+				2C43C304CA5771536E1EBFE0 /* BTFLineChartView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,7 +258,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C43C52E8AE5B13DFFABB916 /* BTFLayerViewTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,7 +266,7 @@
 /* Begin PBXTargetDependency section */
 		2C43C041D8E3221B55E2B4C9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 2C43C425E5B67C504BF8120A /* BTFLayerView */;
+			target = 2C43C425E5B67C504BF8120A /* BTFLineChartView */;
 			targetProxy = 2C43C5CD7590B17E88B3EF7C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -308,7 +297,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = BTFLayerView/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = BTFLineChartView;
 			};
 			name = Debug;
 		};
@@ -359,7 +348,7 @@
 				);
 				INFOPLIST_FILE = BTFLayerViewTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = BTFLineChartView;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 			};
 			name = Debug;
@@ -374,7 +363,7 @@
 				);
 				INFOPLIST_FILE = BTFLayerViewTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = BTFLineChartView;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 			};
 			name = Release;
@@ -385,7 +374,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = BTFLayerView/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = BTFLineChartView;
 			};
 			name = Release;
 		};
@@ -435,23 +424,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2C43C072D35E799721CC0AA0 /* Build configuration list for PBXNativeTarget "BTFLayerView" */ = {
+		2C43C072D35E799721CC0AA0 /* Build configuration list for PBXNativeTarget "BTFLineChartView" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2C43C4378C910DEC5BC8ABCB /* Debug */,
 				2C43CA13D4D496E46517DE95 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
-		2C43C38256F8C7599D7E813F /* Build configuration list for PBXNativeTarget "BTFLayerViewTests" */ = {
+		2C43C38256F8C7599D7E813F /* Build configuration list for PBXNativeTarget "BTFLineChartViewTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2C43C4B7F111BBFB591F6FFC /* Debug */,
 				2C43C57A25360C64E9FEC3B6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
-		2C43C478B0E11ABFB4D19630 /* Build configuration list for PBXProject "BTFLayerView" */ = {
+		2C43C478B0E11ABFB4D19630 /* Build configuration list for PBXProject "BTFLineChartView" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2C43CE33AD4A52E1EA23EBF3 /* Debug */,
@@ -463,13 +454,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		2C43CFABC8403DC924A94988 /* BTFLayerView.xcdatamodeld */ = {
+		2C43CFABC8403DC924A94988 /* BTFLineChartView.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				2C43CFEBBAADEFB3D2E77C77 /* BTFLayerView.xcdatamodel */,
+				2C43CFEBBAADEFB3D2E77C77 /* BTFLineChartView.xcdatamodel */,
 			);
-			currentVersion = 2C43CFEBBAADEFB3D2E77C77 /* BTFLayerView.xcdatamodel */;
-			path = BTFLayerView.xcdatamodeld;
+			currentVersion = 2C43CFEBBAADEFB3D2E77C77 /* BTFLineChartView.xcdatamodel */;
+			path = BTFLineChartView.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

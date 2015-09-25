@@ -3,12 +3,12 @@
 // Copyright (c) 2015 jianyan. All rights reserved.
 //
 
-#ifndef RunDemo_Prefix_pch
-#define RunDemo_Prefix_pch
+#ifndef BTFLineChartView_Prefix_pch
+#define BTFLineChartView_Prefix_pch
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#define SCREEN_WIDTH ([[UIScreen mainScreen] bounds].size.width)
+#define SCREEN_WIDTH [[UIScreen mainScreen] bounds].size.width
 
-#endif
+#endif /*BTFLineChartView_Prefix_pch*/
