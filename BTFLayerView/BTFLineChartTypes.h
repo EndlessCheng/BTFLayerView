@@ -6,14 +6,16 @@
 //  Copyright © 2015年 jianyan. All rights reserved.
 //
 
-//#import <Foundation/Foundation.h>
+#import <Foundation/Foundation.h>
 
 typedef NS_OPTIONS(NSUInteger, BTFYScaleType) {
     BTFYScaleStartFromZero = 0,
     BTFYScaleStartAboutMinValue,
+    BTFYScaleStartAboutMaxValue,
 };
 
 typedef NS_OPTIONS(NSUInteger, BTFMinMaxLineType) {
-    BTFClearLine = 0,
+    BTFClearLineWithoutValue = 0,
+    BTFClearLine,
     BTFNormalLine,
 };

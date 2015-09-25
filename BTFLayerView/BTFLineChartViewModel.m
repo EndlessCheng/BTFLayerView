@@ -8,6 +8,7 @@
 @implementation BTFLineChartViewModel {
     NSArray *_yArray;
     float _seconds;
+    float _minutes;
     
     int _minYIndex;
     int _maxYIndex;
@@ -25,6 +26,7 @@
             _yArray = [[NSArray alloc] initWithArray:yArray];
         }
         _seconds = seconds;
+        _minutes = seconds / 60;
         
         _minY = INFINITY;
         _maxY = -INFINITY;
@@ -45,16 +47,21 @@
 }
 
 - (NSArray *)getXScaleStringsWithPartNumber:(int)partNumber {
-    assert(partNumber >= 2);
+    assert(partNumber > 1);
     
     NSMutableArray *xScaleStrings = [[NSMutableArray alloc] init];
-    float xGap = _seconds / (partNumber - 1);
+    BOOL isLongTime = _seconds >= 300; // formula?
+    float xGap = (isLongTime ? _minutes : _seconds) / (partNumber - 1);
     for (int i = 0; i < partNumber; i++) {
         NSString *xScaleString;
         if (i < partNumber - 1) {
             xScaleString = [NSString stringWithFormat:@"%d", (int) (xGap * i + 0.5)];
         } else {
-            xScaleString = [NSString stringWithFormat:@"%d(分钟)", (int) (xGap * i + 0.5)];
+            if (isLongTime) {
+                xScaleString = [NSString stringWithFormat:@"%d(分钟)", (int) (xGap * i + 0.5)];
+            } else {
+                xScaleString = [NSString stringWithFormat:@"%d(秒)", (int) (xGap * i + 0.5)];
+            }
         }
         [xScaleStrings addObject:xScaleString];
     }
@@ -62,7 +69,7 @@
 }
 
 - (NSArray *)getYScaleStringsWithPartNumber:(int)partNumber yScaleType:(BTFYScaleType)yScaleType {
-    assert(partNumber >= 2);
+    assert(partNumber > 1);
     
     NSMutableArray *yScaleStrings = [[NSMutableArray alloc] init];
     switch (yScaleType) {
@@ -84,26 +91,37 @@
     return yScaleStrings;
 }
 
-- (CGPoint)getPointWithValueIndex:(int)valueIndex {
+- (CGPoint)getPointWithValueIndex:(int)valueIndex yScaleType:(BTFYScaleType)yScaleType {
     float x = ((float) valueIndex) / (_yArray.count - 1);
-    float y = ([_yArray[valueIndex] floatValue] - _minY) / (_maxY - _minY);
+    float y;
+    switch (yScaleType) {
+        case BTFYScaleStartFromZero:
+            y = [_yArray[valueIndex] floatValue] / _maxY;
+            break;
+        case BTFYScaleStartAboutMinValue:
+            y = ([_yArray[valueIndex] floatValue] - _minY) / (_maxY - _minY);
+            break;
+        default:
+            break;
+    }
+    
     return CGPointMake(x, y);
 }
 
-- (NSArray *)getUnitLineChartPoints {
+- (NSArray *)getUnitLineChartPointsWithYScaleType:(BTFYScaleType)yScaleType {
     NSMutableArray *unitLineChartPoints = [[NSMutableArray alloc] init];
     for (int i = 0; i < _yArray.count; ++i) {
-        [unitLineChartPoints addObject:[NSValue valueWithCGPoint:[self getPointWithValueIndex:i]]];
+        [unitLineChartPoints addObject:[NSValue valueWithCGPoint:[self getPointWithValueIndex:i yScaleType:yScaleType]]];
     }
     return unitLineChartPoints;
 }
 
-- (CGPoint)getUnitLineChartMinPoint {
-    return [self getPointWithValueIndex:_minYIndex];
+- (CGPoint)getUnitLineChartMinPointWithYScaleType:(BTFYScaleType)yScaleType {
+    return [self getPointWithValueIndex:_minYIndex yScaleType:yScaleType];
 }
 
-- (CGPoint)getUnitLineChartMaxPoint {
-    return [self getPointWithValueIndex:_maxYIndex];
+- (CGPoint)getUnitLineChartMaxPointWithYScaleType:(BTFYScaleType)yScaleType {
+    return [self getPointWithValueIndex:_maxYIndex yScaleType:yScaleType];
 }
 
 @end

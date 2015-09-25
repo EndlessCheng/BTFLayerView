@@ -6,12 +6,19 @@
 #import "BTFLineChartView.h"
 #import "BTFLineChartViewModel.h"
 
-const int HORIZONTAL_LINE_NUMBER = 6;
-const int VERTICAL_LINE_NUMBER = 6;
-const float AXES_LINE_WIDTH = 1.0f;
-const float MIN_MAX_LINE_WIDTH = 2.0f;
+#import "Prefix.pch"
 
-const int Y_SCALE_RIGHT_MARGIN = 22; // TODO: 应为最大值的文字长度（一半左右）
+const int HORIZONTAL_LINE_NUMBER = 6;
+const int VERTICAL_LINE_NUMBER = 9;
+
+const float AXES_LINE_WIDTH = 1.0;
+const float MIN_MAX_LINE_WIDTH = 2.0;
+const float BOLD_LINES_WIDTH = 2.0;
+
+const int SCALE_FONT_SIZE = 7;
+
+const float X_SCALE_TOP_SPACE_TO_TABLE = 6.0;
+const float Y_SCALE_RIGHT_SPACE_TO_TABLE = 6.0;
 
 @implementation BTFLineChartView {
     CGPoint _originPoint;
@@ -26,9 +33,9 @@ const int Y_SCALE_RIGHT_MARGIN = 22; // TODO: 应为最大值的文字长度（�
     self = [super initWithFrame:frame];
     
     if (self) {
-        _originPoint = CGPointMake(30, self.frame.size.height - 20);
-        _chartWidth = self.frame.size.width - 60;
-        _chartHeight = self.frame.size.height - 50;
+        _originPoint = CGPointMake(25, self.frame.size.height - 28);
+        _chartWidth = self.frame.size.width - 50;
+        _chartHeight = self.frame.size.height - 62;
         
         self.backgroundColor = [UIColor clearColor];
         self.clipsToBounds = YES;
@@ -51,19 +58,22 @@ const int Y_SCALE_RIGHT_MARGIN = 22; // TODO: 应为最大值的文字长度（�
         [self drawXYLines];
         [self drawScales];
         [self drawArea];
+        [self drawBoldLines];
         
-        CGPoint minUnitPoint = [_model getUnitLineChartMinPoint];
-        CGPoint maxUnitPoint = [_model getUnitLineChartMaxPoint];
-        UIColor *minPointColor = [UIColor colorWithRed:3.0f / 255 green:169.0f / 255 blue:252.0f / 255 alpha:1.0f];
-        UIColor *maxPointColor = [UIColor colorWithRed:241.0f / 255 green:90.0f / 255 blue:36.0f / 255 alpha:1.0f];
+        CGPoint minUnitPoint = [_model getUnitLineChartMinPointWithYScaleType:_yScaleType];
+        CGPoint maxUnitPoint = [_model getUnitLineChartMaxPointWithYScaleType:_yScaleType];
+        UIColor *minPointColor = [UIColor colorWithRed:3.0 / 255 green:169.0 / 255 blue:252.0 / 255 alpha:1.0];
+        UIColor *maxPointColor = [UIColor colorWithRed:241.0 / 255 green:90.0 / 255 blue:36.0 / 255 alpha:1.0];
         if (_minMaxLineType == BTFNormalLine) {
-            UIColor *minLineColor = [minPointColor colorWithAlphaComponent:0.5f];
-            UIColor *maxLineColor = [maxPointColor colorWithAlphaComponent:0.5f];
+            UIColor *minLineColor = [minPointColor colorWithAlphaComponent:0.5];
+            UIColor *maxLineColor = [maxPointColor colorWithAlphaComponent:0.5];
             [self drawMinMaxLineWithUnitPoint:minUnitPoint pointColor:minPointColor lineColor:minLineColor];
             [self drawMinMaxLineWithUnitPoint:maxUnitPoint pointColor:maxPointColor lineColor:maxLineColor];
         }
-        [self drawStringWithValue:_model.minY position:[self changePointToLayerPoint:minUnitPoint] backgroundColor:minPointColor];
-        [self drawStringWithValue:_model.maxY position:[self changePointToLayerPoint:maxUnitPoint] backgroundColor:maxPointColor];
+        if (_minMaxLineType != BTFClearLineWithoutValue) {
+            [self drawStringWithValue:_model.minY position:[self changePointToLayerPoint:minUnitPoint] backgroundColor:minPointColor];
+            [self drawStringWithValue:_model.maxY position:[self changePointToLayerPoint:maxUnitPoint] backgroundColor:maxPointColor];
+        }
     }
 }
 
@@ -76,19 +86,26 @@ const int Y_SCALE_RIGHT_MARGIN = 22; // TODO: 应为最大值的文字长度（�
 }
 
 - (void)drawXYLines {
-    UIColor *grayColor = [UIColor colorWithRed:153.0f / 255 green:153.0f / 255 blue:153.0f / 255 alpha:1.0f];
-    UIColor *lightGrayColor = [UIColor colorWithRed:153.0f / 255 green:153.0f / 255 blue:153.0f / 255 alpha:0.3f];
+    UIColor *tableLineColor = [UIColor colorWithRed:153.0 / 255 green:153.0 / 255 blue:153.0 / 255 alpha:1.0];
+    UIColor *tableSeparatorColor = [tableLineColor colorWithAlphaComponent:0.3];
 
-    // 画X轴
-    CAShapeLayer *shapeLayerX = [self getShapeLayerWithLineWidth:AXES_LINE_WIDTH color:grayColor];
+    // 画X轴和刻度线
+    CAShapeLayer *shapeLayerX = [self getShapeLayerWithLineWidth:AXES_LINE_WIDTH color:tableLineColor];
     [self.layer addSublayer:shapeLayerX];
     UIBezierPath *pathX = [UIBezierPath bezierPath];
     [pathX moveToPoint:CGPointMake(_originPoint.x, _originPoint.y)];
     [pathX addLineToPoint:CGPointMake(_originPoint.x + _chartWidth, _originPoint.y)];
+    float xGap = _chartWidth / (VERTICAL_LINE_NUMBER - 1);
+    for (int i = 0; i < VERTICAL_LINE_NUMBER; ++i) {
+        float posX = _originPoint.x + xGap * i;
+        [pathX moveToPoint:CGPointMake(posX, _originPoint.y)];
+        float scaleLineLength = (i & 1 ? 2 : 3);
+        [pathX addLineToPoint:CGPointMake(posX, _originPoint.y + scaleLineLength)];
+    }
     shapeLayerX.path = pathX.CGPath;
 
     // 画横线
-    CAShapeLayer *shapeLayer = [self getShapeLayerWithLineWidth:AXES_LINE_WIDTH color:lightGrayColor];
+    CAShapeLayer *shapeLayer = [self getShapeLayerWithLineWidth:AXES_LINE_WIDTH color:tableSeparatorColor];
     [self.layer addSublayer:shapeLayer];
     UIBezierPath *path = [UIBezierPath bezierPath];
     float yGap = _chartHeight / (HORIZONTAL_LINE_NUMBER - 1);
@@ -99,12 +116,11 @@ const int Y_SCALE_RIGHT_MARGIN = 22; // TODO: 应为最大值的文字长度（�
     }
     shapeLayer.path = path.CGPath;
 
-    // 画竖线
-    CAShapeLayer *shapeLayerY = [self getShapeLayerWithLineWidth:AXES_LINE_WIDTH color:lightGrayColor];
+    // 画竖虚线
+    CAShapeLayer *shapeLayerY = [self getShapeLayerWithLineWidth:AXES_LINE_WIDTH color:tableSeparatorColor];
     [shapeLayerY setLineDashPattern:@[@3, @2]]; // 虚线: 长度, 间距
     [self.layer addSublayer:shapeLayerY];
     UIBezierPath *pathY = [UIBezierPath bezierPath];
-    float xGap = _chartWidth / (VERTICAL_LINE_NUMBER - 1);
     for (int i = 1; i < VERTICAL_LINE_NUMBER - 1; i++) { // 第一条和最后一条不画
         float posX = _originPoint.x + xGap * i;
         [pathY moveToPoint:CGPointMake(posX, _originPoint.y - _chartHeight)];
@@ -114,25 +130,27 @@ const int Y_SCALE_RIGHT_MARGIN = 22; // TODO: 应为最大值的文字长度（�
 }
 
 - (void)drawScales {
-    UIColor *xScaleColor = [UIColor colorWithRed:4.0f / 255 green:22.0f / 255 blue:53.0f / 255 alpha:1.0];
-    UIColor *yScaleColor = [UIColor colorWithRed:85.0f / 255 green:119.0f / 255 blue:148.0f / 255 alpha:1.0f];
-    UIFont *font = [UIFont systemFontOfSize:7];
+    UIColor *xScaleColor = [UIColor colorWithRed:4.0 / 255 green:22.0 / 255 blue:53.0 / 255 alpha:1.0];
+    UIColor *yScaleColor = [UIColor colorWithRed:85.0 / 255 green:119.0 / 255 blue:148.0 / 255 alpha:1.0];
+    UIFont *font = [UIFont systemFontOfSize:SCALE_FONT_SIZE];
 
     // 画x轴上的刻度
-    NSArray *xScaleStrings = [_model getXScaleStringsWithPartNumber:VERTICAL_LINE_NUMBER];
+    NSArray *xScaleStrings = [_model getXScaleStringsWithPartNumber:VERTICAL_LINE_NUMBER / 2 + 1];
     for (int i = 0; i < xScaleStrings.count; i++) {
-        float posX = _originPoint.x - 15 + i * _chartWidth / (VERTICAL_LINE_NUMBER - 1);
+        CGSize xScaleStringSize = [xScaleStrings[i] sizeWithAttributes:@{NSFontAttributeName:font}];
+        float posX = _originPoint.x + i * _chartWidth / (VERTICAL_LINE_NUMBER / 2) - xScaleStringSize.width / 2;
         [self drawStringWithString:xScaleStrings[i] textColor:xScaleColor font:font
-                             frame:CGRectMake(posX, _originPoint.y, 30.0f, 11.0f)
+                             frame:CGRectMake(posX, _originPoint.y + X_SCALE_TOP_SPACE_TO_TABLE, xScaleStringSize.width, xScaleStringSize.height)
                    backgroundColor:[UIColor clearColor]];
     }
-
+    
     // 画y轴上的刻度(包括最低点)
     NSArray *yScaleStrings = [_model getYScaleStringsWithPartNumber:HORIZONTAL_LINE_NUMBER yScaleType:BTFYScaleStartFromZero];
     for (int i = 0; i < yScaleStrings.count; i++) {
-        float posY = _originPoint.y - 5 - i * _chartHeight / (HORIZONTAL_LINE_NUMBER - 1);
+        CGSize yScaleStringSize = [yScaleStrings[i] sizeWithAttributes:@{NSFontAttributeName:font}];
+        float posY = _originPoint.y - i * _chartHeight / (HORIZONTAL_LINE_NUMBER - 1) - yScaleStringSize.width / 2;
         [self drawStringWithString:yScaleStrings[i] textColor:yScaleColor font:font
-                             frame:CGRectMake(_originPoint.x - Y_SCALE_RIGHT_MARGIN, posY, 30.0f, 10.0f)
+                             frame:CGRectMake(_originPoint.x - Y_SCALE_RIGHT_SPACE_TO_TABLE - yScaleStringSize.width, posY, yScaleStringSize.width, yScaleStringSize.height)
                    backgroundColor:[UIColor clearColor]];
     }
 }
@@ -157,7 +175,7 @@ const int Y_SCALE_RIGHT_MARGIN = 22; // TODO: 应为最大值的文字长度（�
     xTextLayer.wrapped = YES;
     xTextLayer.string = string;
     xTextLayer.contentsScale = [UIScreen mainScreen].scale;
-    xTextLayer.cornerRadius = 3.0f;
+    xTextLayer.cornerRadius = 3.0;
 
     [self.layer addSublayer:xTextLayer];
 }
@@ -166,17 +184,17 @@ const int Y_SCALE_RIGHT_MARGIN = 22; // TODO: 应为最大值的文字长度（�
     // 创建CGContextRef
     UIGraphicsBeginImageContext(self.bounds.size);
     CGContextRef gc = UIGraphicsGetCurrentContext();
-
+    
     // 创建CGMutablePathRef
     CGMutablePathRef path = CGPathCreateMutable();
     CGPathMoveToPoint(path, NULL, _originPoint.x, _originPoint.y);
-    NSArray *unitLineChartPoints = [_model getUnitLineChartPoints];
+    NSArray *unitLineChartPoints = [_model getUnitLineChartPointsWithYScaleType:_yScaleType];
     for (NSValue *unitPointValue in unitLineChartPoints) {
         CGPoint unitPoint = [self changePointToLayerPoint:unitPointValue.CGPointValue];
         CGPathAddLineToPoint(path, NULL, unitPoint.x, unitPoint.y);
     }
     CGPathAddLineToPoint(path, NULL, _originPoint.x + _chartWidth, _originPoint.y);
-    UIColor *startColor = [UIColor colorWithRed:1.0f green:210.0f / 255 blue:20.0f / 255 alpha:0.5f];
+    UIColor *startColor = [THEME_COLOR colorWithAlphaComponent:0.6];
     [self drawLinearGradient:gc path:path startColor:startColor.CGColor endColor:startColor.CGColor];
     CGPathRelease(path); // 注意释放CGMutablePathRef
 
@@ -191,6 +209,21 @@ const int Y_SCALE_RIGHT_MARGIN = 22; // TODO: 应为最大值的文字长度（�
     UIGraphicsEndImageContext();
 }
 
+- (void)drawBoldLines {
+    CAShapeLayer *lineShapeLayer = [self getShapeLayerWithLineWidth:BOLD_LINES_WIDTH color:THEME_COLOR];
+    [self.layer addSublayer:lineShapeLayer];
+    
+    UIBezierPath *linePath = [UIBezierPath bezierPath];
+    NSArray *unitLineChartPoints = [_model getUnitLineChartPointsWithYScaleType:_yScaleType];
+    
+    for (int i = 0; i < unitLineChartPoints.count - 1; ++i) {
+        [linePath moveToPoint:[self changePointToLayerPoint:((NSValue *)unitLineChartPoints[i]).CGPointValue]];
+        [linePath addLineToPoint:[self changePointToLayerPoint:((NSValue *)unitLineChartPoints[i + 1]).CGPointValue]];
+
+    }
+    lineShapeLayer.path = linePath.CGPath;
+}
+
 // 渐变色辅助函数
 - (void)drawLinearGradient:(CGContextRef)context
                       path:(CGPathRef)path
@@ -202,7 +235,7 @@ const int Y_SCALE_RIGHT_MARGIN = 22; // TODO: 应为最大值的文字长度（�
     CGContextClip(context);
 
     NSArray *colors = @[(__bridge id) startColor, (__bridge id) endColor];
-    CGFloat locations[] = {0.0f, 1.0f};
+    CGFloat locations[] = {0.0, 1.0};
     CGGradientRef gradient = CGGradientCreateWithColors(colorSpace, (__bridge CFArrayRef) colors, locations);
     CGRect pathRect = CGPathGetBoundingBox(path);
     CGPoint startPoint = CGPointMake(CGRectGetMidX(pathRect), CGRectGetMinY(pathRect));
@@ -220,12 +253,12 @@ const int Y_SCALE_RIGHT_MARGIN = 22; // TODO: 应为最大值的文字长度（�
 
     CAShapeLayer *pointShapeLayer = [CAShapeLayer new];
     pointShapeLayer.lineCap = kCALineCapRound;
-    pointShapeLayer.lineWidth = 1.0f;
+    pointShapeLayer.lineWidth = 1.0;
     pointShapeLayer.fillColor = pointColor.CGColor;
     [self.layer addSublayer:pointShapeLayer];
 
     UIBezierPath *pointPath = [UIBezierPath bezierPath];
-    [pointPath addArcWithCenter:layerPoint radius:2.0f startAngle:0.0f endAngle:180.0f clockwise:YES];
+    [pointPath addArcWithCenter:layerPoint radius:2.0 startAngle:0.0 endAngle:180.0 clockwise:YES];
     pointShapeLayer.path = pointPath.CGPath; // 关联layer和贝塞尔路径
 
     // 画线
@@ -234,13 +267,14 @@ const int Y_SCALE_RIGHT_MARGIN = 22; // TODO: 应为最大值的文字长度（�
 
     UIBezierPath *linePath = [UIBezierPath bezierPath];
     [linePath moveToPoint:layerPoint];
-    [linePath addLineToPoint:[self changePointToLayerPoint:CGPointMake(unitPoint.x, 0.0f)]];
+    [linePath addLineToPoint:[self changePointToLayerPoint:CGPointMake(unitPoint.x, 0.0)]];
     lineShapeLayer.path = linePath.CGPath;
 
+    // draw
     CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"opacity"];
     animation.fromValue = @(0.0);
     animation.toValue = @(0.0);
-    animation.duration = 0.0f;
+    animation.duration = 0.0;
     [pointShapeLayer addAnimation:animation forKey:nil];
     pointShapeLayer.strokeEnd = 1;
     [lineShapeLayer addAnimation:animation forKey:nil];

@@ -19,6 +19,12 @@
 		2C43CCE158AA6A175CB0631B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C43C3B260333294030175CC /* Images.xcassets */; };
 		2C43CFDBF68ACDFB06DAC1E9 /* BTFLineChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C43C1C8CBFEDD5DED45C079 /* BTFLineChartViewController.m */; };
 		E5CADC151BB3FA3C00BA85FF /* BTFLineChartScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = E5CADC141BB3FA3C00BA85FF /* BTFLineChartScrollView.m */; settings = {ASSET_TAGS = (); }; };
+		E5CADC1C1BB512BF00BA85FF /* chart_altitude@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5CADC161BB512BF00BA85FF /* chart_altitude@3x.png */; settings = {ASSET_TAGS = (); }; };
+		E5CADC1D1BB512BF00BA85FF /* chart_heartrate@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5CADC171BB512BF00BA85FF /* chart_heartrate@2x.png */; settings = {ASSET_TAGS = (); }; };
+		E5CADC1E1BB512BF00BA85FF /* chart_cadence@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5CADC181BB512BF00BA85FF /* chart_cadence@2x.png */; settings = {ASSET_TAGS = (); }; };
+		E5CADC1F1BB512BF00BA85FF /* chart_heartrate@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5CADC191BB512BF00BA85FF /* chart_heartrate@3x.png */; settings = {ASSET_TAGS = (); }; };
+		E5CADC201BB512BF00BA85FF /* chart_cadence@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5CADC1A1BB512BF00BA85FF /* chart_cadence@3x.png */; settings = {ASSET_TAGS = (); }; };
+		E5CADC211BB512BF00BA85FF /* chart_altitude@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E5CADC1B1BB512BF00BA85FF /* chart_altitude@2x.png */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +61,12 @@
 		E5CADC121BB3EE0D00BA85FF /* BTFLineChartTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTFLineChartTypes.h; sourceTree = "<group>"; };
 		E5CADC131BB3FA0900BA85FF /* BTFLineChartScrollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTFLineChartScrollView.h; sourceTree = "<group>"; };
 		E5CADC141BB3FA3C00BA85FF /* BTFLineChartScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTFLineChartScrollView.m; sourceTree = "<group>"; };
+		E5CADC161BB512BF00BA85FF /* chart_altitude@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chart_altitude@3x.png"; sourceTree = "<group>"; };
+		E5CADC171BB512BF00BA85FF /* chart_heartrate@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chart_heartrate@2x.png"; sourceTree = "<group>"; };
+		E5CADC181BB512BF00BA85FF /* chart_cadence@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chart_cadence@2x.png"; sourceTree = "<group>"; };
+		E5CADC191BB512BF00BA85FF /* chart_heartrate@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chart_heartrate@3x.png"; sourceTree = "<group>"; };
+		E5CADC1A1BB512BF00BA85FF /* chart_cadence@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chart_cadence@3x.png"; sourceTree = "<group>"; };
+		E5CADC1B1BB512BF00BA85FF /* chart_altitude@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chart_altitude@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,8 +111,14 @@
 		2C43C9E077AE8551C951994A /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				E5CADC171BB512BF00BA85FF /* chart_heartrate@2x.png */,
+				E5CADC191BB512BF00BA85FF /* chart_heartrate@3x.png */,
 				2C43C537024AD7A1FDD84CEC /* chart_speed@2x.png */,
 				2C43C54F3E7DE21C92A306E5 /* chart_speed@3x.png */,
+				E5CADC181BB512BF00BA85FF /* chart_cadence@2x.png */,
+				E5CADC1A1BB512BF00BA85FF /* chart_cadence@3x.png */,
+				E5CADC1B1BB512BF00BA85FF /* chart_altitude@2x.png */,
+				E5CADC161BB512BF00BA85FF /* chart_altitude@3x.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -233,7 +251,13 @@
 				2C43C5DDE5A390611E050901 /* LaunchScreen.xib in Resources */,
 				2C43C64551DBE53653B24D06 /* Main.storyboard in Resources */,
 				2C43C033BA59AFE0174608D0 /* chart_speed@2x.png in Resources */,
+				E5CADC211BB512BF00BA85FF /* chart_altitude@2x.png in Resources */,
+				E5CADC201BB512BF00BA85FF /* chart_cadence@3x.png in Resources */,
+				E5CADC1C1BB512BF00BA85FF /* chart_altitude@3x.png in Resources */,
+				E5CADC1E1BB512BF00BA85FF /* chart_cadence@2x.png in Resources */,
+				E5CADC1D1BB512BF00BA85FF /* chart_heartrate@2x.png in Resources */,
 				2C43C98A28CC0A023DEA6B15 /* chart_speed@3x.png in Resources */,
+				E5CADC1F1BB512BF00BA85FF /* chart_heartrate@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

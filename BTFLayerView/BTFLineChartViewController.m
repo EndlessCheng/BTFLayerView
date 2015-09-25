@@ -18,9 +18,17 @@
     
     srand48(arc4random());
     
-    [_lineChartScrollView addChartViewWithYArray:[self generateRamdomArrayWithRange:BTFMakeRange(10, 15)] seconds:1320
-                                      yScaleType:BTFYScaleStartFromZero minMaxLineType:BTFClearLine
-                                           image:[UIImage imageNamed:@"chart_speed.png"] labelTitle:@"速度" unitTitle:@"km/h"];
+    NSArray *imageNames = @[@"chart_heartrate.png", @"chart_speed.png", @"chart_cadence.png", @"chart_altitude.png"];
+    NSArray *labelTitles = @[@"心率", @"速度", @"踏频", @"海拔"];
+    NSArray *unitTitles = @[@"(次/分钟)", @"(公里/小时)", @"(转/分钟)", @"(米)"];
+    
+    assert(imageNames.count == labelTitles.count && imageNames.count == unitTitles.count);
+    
+    for (int i = 0; i < imageNames.count; ++i) {
+        [_lineChartScrollView addChartViewWithYArray:[self generateRamdomArrayWithRange:BTFMakeRange(10, 15)] seconds:7200
+                                          yScaleType:BTFYScaleStartFromZero minMaxLineType:BTFClearLineWithoutValue
+                                               image:[UIImage imageNamed:imageNames[i]] labelTitle:labelTitles[i] unitTitle:unitTitles[i]];
+    }
     [_lineChartScrollView AllChartViewDidAdd];
 }
 

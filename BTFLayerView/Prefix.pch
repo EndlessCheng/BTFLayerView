@@ -11,4 +11,6 @@
 
 #define SCREEN_WIDTH [[UIScreen mainScreen] bounds].size.width
 
+#define THEME_COLOR [UIColor colorWithRed:255.0 / 255 green:210.0 / 255 blue:20.0 / 255 alpha:0.5]
+
 #endif /*BTFLineChartView_Prefix_pch*/

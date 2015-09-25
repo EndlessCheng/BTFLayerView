@@ -18,8 +18,8 @@
 - (NSArray *)getXScaleStringsWithPartNumber:(int)partNumber;
 - (NSArray *)getYScaleStringsWithPartNumber:(int)partNumber yScaleType:(BTFYScaleType)yScaleType;
 
-- (NSArray *)getUnitLineChartPoints;
-- (CGPoint)getUnitLineChartMinPoint;
-- (CGPoint)getUnitLineChartMaxPoint;
+- (NSArray *)getUnitLineChartPointsWithYScaleType:(BTFYScaleType)yScaleType;
+- (CGPoint)getUnitLineChartMinPointWithYScaleType:(BTFYScaleType)yScaleType;
+- (CGPoint)getUnitLineChartMaxPointWithYScaleType:(BTFYScaleType)yScaleType;
 
 @end
