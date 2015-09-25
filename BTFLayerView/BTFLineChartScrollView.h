@@ -13,6 +13,7 @@
 @interface BTFLineChartScrollView : UIScrollView
 
 - (void)addChartViewWithYArray:(NSArray *)array seconds:(int)seconds
+                boldLinesColor:(UIColor *)boldLinesColor fillColor:(UIColor *)fillColor
                     yScaleType:(BTFYScaleType)yScaleType minMaxLineType:(BTFMinMaxLineType)minMaxLineType
                          image:(UIImage *)image labelTitle:(NSString *)labelTitle unitTitle:(NSString *)unitTitle;
 

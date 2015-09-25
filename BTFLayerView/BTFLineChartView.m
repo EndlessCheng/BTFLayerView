@@ -25,11 +25,15 @@ const float Y_SCALE_RIGHT_SPACE_TO_TABLE = 6.0;
     float _chartWidth;
     float _chartHeight;
     
+    UIColor *_boldLinesColor;
+    UIColor *_fillColor;
+    
     BTFYScaleType _yScaleType;
     BTFMinMaxLineType _minMaxLineType;
 }
 
-- (id)initWithFrame:(CGRect)frame yScaleType:(BTFYScaleType)yScaleType minMaxLineType:(BTFMinMaxLineType)minMaxLineType {
+- (id)initWithFrame:(CGRect)frame boldLinesColor:(UIColor *)boldLinesColor fillColor:(UIColor *)fillColor
+         yScaleType:(BTFYScaleType)yScaleType minMaxLineType:(BTFMinMaxLineType)minMaxLineType {
     self = [super initWithFrame:frame];
     
     if (self) {
@@ -37,6 +41,8 @@ const float Y_SCALE_RIGHT_SPACE_TO_TABLE = 6.0;
         _chartWidth = self.frame.size.width - 50;
         _chartHeight = self.frame.size.height - 62;
         
+        _boldLinesColor = boldLinesColor;
+        _fillColor = fillColor;
         self.backgroundColor = [UIColor clearColor];
         self.clipsToBounds = YES;
         
@@ -180,6 +186,21 @@ const float Y_SCALE_RIGHT_SPACE_TO_TABLE = 6.0;
     [self.layer addSublayer:xTextLayer];
 }
 
+- (void)drawBoldLines {
+    CAShapeLayer *lineShapeLayer = [self getShapeLayerWithLineWidth:BOLD_LINES_WIDTH color:_boldLinesColor];
+    [self.layer addSublayer:lineShapeLayer];
+    
+    UIBezierPath *linePath = [UIBezierPath bezierPath];
+    NSArray *unitLineChartPoints = [_model getUnitLineChartPointsWithYScaleType:_yScaleType];
+    
+    for (int i = 0; i < unitLineChartPoints.count - 1; ++i) {
+        [linePath moveToPoint:[self changePointToLayerPoint:((NSValue *)unitLineChartPoints[i]).CGPointValue]];
+        [linePath addLineToPoint:[self changePointToLayerPoint:((NSValue *)unitLineChartPoints[i + 1]).CGPointValue]];
+        
+    }
+    lineShapeLayer.path = linePath.CGPath;
+}
+
 - (void)drawArea {
     // 创建CGContextRef
     UIGraphicsBeginImageContext(self.bounds.size);
@@ -194,7 +215,7 @@ const float Y_SCALE_RIGHT_SPACE_TO_TABLE = 6.0;
         CGPathAddLineToPoint(path, NULL, unitPoint.x, unitPoint.y);
     }
     CGPathAddLineToPoint(path, NULL, _originPoint.x + _chartWidth, _originPoint.y);
-    UIColor *startColor = [THEME_COLOR colorWithAlphaComponent:0.6];
+    UIColor *startColor = _fillColor;
     [self drawLinearGradient:gc path:path startColor:startColor.CGColor endColor:startColor.CGColor];
     CGPathRelease(path); // 注意释放CGMutablePathRef
 
@@ -207,21 +228,6 @@ const float Y_SCALE_RIGHT_SPACE_TO_TABLE = 6.0;
     [self.layer addSublayer:slayer];
 
     UIGraphicsEndImageContext();
-}
-
-- (void)drawBoldLines {
-    CAShapeLayer *lineShapeLayer = [self getShapeLayerWithLineWidth:BOLD_LINES_WIDTH color:THEME_COLOR];
-    [self.layer addSublayer:lineShapeLayer];
-    
-    UIBezierPath *linePath = [UIBezierPath bezierPath];
-    NSArray *unitLineChartPoints = [_model getUnitLineChartPointsWithYScaleType:_yScaleType];
-    
-    for (int i = 0; i < unitLineChartPoints.count - 1; ++i) {
-        [linePath moveToPoint:[self changePointToLayerPoint:((NSValue *)unitLineChartPoints[i]).CGPointValue]];
-        [linePath addLineToPoint:[self changePointToLayerPoint:((NSValue *)unitLineChartPoints[i + 1]).CGPointValue]];
-
-    }
-    lineShapeLayer.path = linePath.CGPath;
 }
 
 // 渐变色辅助函数

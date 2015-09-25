@@ -13,7 +13,8 @@
 
 @property BTFLineChartViewModel* model;
 
-- (id)initWithFrame:(CGRect)frame yScaleType:(BTFYScaleType)yScaleType minMaxLineType:(BTFMinMaxLineType)minMaxLineType;
+- (id)initWithFrame:(CGRect)frame boldLinesColor:(UIColor *)boldLinesColor fillColor:(UIColor *)fillColor
+         yScaleType:(BTFYScaleType)yScaleType minMaxLineType:(BTFMinMaxLineType)minMaxLineType;
 
 - (void)drawChart;
 

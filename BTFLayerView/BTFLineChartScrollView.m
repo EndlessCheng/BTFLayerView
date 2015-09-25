@@ -22,6 +22,7 @@ const float TOP_SPACE_TO_SUPERVIEW = 11;
 @implementation BTFLineChartScrollView
 
 - (void)addChartViewWithYArray:(NSArray *)array seconds:(int)seconds
+                boldLinesColor:(UIColor *)boldLinesColor fillColor:(UIColor *)fillColor
                     yScaleType:(BTFYScaleType)yScaleType minMaxLineType:(BTFMinMaxLineType)minMaxLineType
                          image:(UIImage *)image labelTitle:(NSString *)labelTitle unitTitle:(NSString *)unitTitle {
     assert([[self subviews] count] >= 2); // 初始就有2个subview
@@ -31,7 +32,7 @@ const float TOP_SPACE_TO_SUPERVIEW = 11;
     UIView *labelView = [self getLeftLabelViewWithFrame:CGRectMake(0, 0, LEFT_LABEL_VIEW_WIDTH, CHART_VIEW_HEIGHT) image:image labelTitle:labelTitle unitTitle:unitTitle];
     [frameView addSubview:labelView];
     
-    BTFLineChartView *lineChartView = [[BTFLineChartView alloc] initWithFrame:CGRectMake(51, 0, SCREEN_WIDTH - 51, CHART_VIEW_HEIGHT) yScaleType:yScaleType minMaxLineType:minMaxLineType];
+    BTFLineChartView *lineChartView = [[BTFLineChartView alloc] initWithFrame:CGRectMake(51, 0, SCREEN_WIDTH - 51, CHART_VIEW_HEIGHT) boldLinesColor:boldLinesColor fillColor:fillColor yScaleType:yScaleType minMaxLineType:minMaxLineType];
     lineChartView.model = [[BTFLineChartViewModel alloc] initWithArray:array seconds:seconds];
     [lineChartView drawChart];
     [frameView addSubview:lineChartView];

@@ -26,6 +26,8 @@
     
     for (int i = 0; i < imageNames.count; ++i) {
         [_lineChartScrollView addChartViewWithYArray:[self generateRamdomArrayWithRange:BTFMakeRange(10, 15)] seconds:7200
+                                      boldLinesColor:[UIColor colorWithRed:229.0/255 green:162.0/255 blue:28.0/255 alpha:1.0]
+                                           fillColor:[UIColor colorWithRed:255.0/255 green:199.0/255 blue:0.0/255 alpha:0.6]
                                           yScaleType:BTFYScaleStartFromZero minMaxLineType:BTFClearLineWithoutValue
                                                image:[UIImage imageNamed:imageNames[i]] labelTitle:labelTitles[i] unitTitle:unitTitles[i]];
     }
